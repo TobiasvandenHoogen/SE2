@@ -1,23 +1,27 @@
-#############################################################################
-#
-# Project Makefile
-#
-# (c) Wouter van Ooijen (www.voti.nl) 2016
-#
-# This file is in the public domain.
-# 
-#############################################################################
+GXX := g++ --std=c++17
+MAINFLAGS := -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
-# source files in this project (main.cpp is automatically assumed)
-SOURCES := ball.cpp
+HEADERS := drawable.hpp ball.hpp boundary.hpp beam.hpp
 
-# header files in this project
-HEADERS := ball.hpp drawable.hpp boundary.hpp action.hpp
+OBJECTS := $(SOURCES:%.cpp=%.o)
 
-# other places to look for files for this project
-SEARCH  := 
+main: main.o $(OBJECTS) $(HEADERS)
+	$(GXX) main.o $(OBJECTS) $(MAINFLAGS) -o main.exe
 
-# set REATIVE to the next higher directory 
-# and defer to the Makefile.due there
-RELATIVE := $(RELATIVE)../
-include $(RELATIVE)Makefile.native
+main.o: main.cpp
+	$(GXX) -c main.cpp -o main.o
+
+$(OBJECTS): $(SOURCES) $(HEADERS)
+	$(GXX) -c $< -o $@
+
+.PHONY: clean build run
+
+clean:
+	@echo "Cleaning up files"
+	rm $(OBJECTS) main.o main.exe
+
+build: main
+
+run: main
+	@echo "Running application"
+	@./main.exe

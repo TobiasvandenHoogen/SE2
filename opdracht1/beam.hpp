@@ -19,6 +19,12 @@ beam(sf::Vector2f location, sf::Vector2f size, sf::Vector2f bounce):
 
     }
 
+    void move(int i){
+        if(location.y + i >= 1 && location.y + i <= 310){
+            location.y += i;
+        }
+    }
+
     void keyPressed(int y){
         location.y += y;
     }

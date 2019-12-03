@@ -6,7 +6,8 @@
 
 int main( int argc, char *argv[] ){
 
-	sf::sleep(sf::milliseconds(1));      
+	sf::sleep(sf::milliseconds(1));  
+	//initialize sound     
 	sf::SoundBuffer buffer;
 	if(!buffer.loadFromFile("floop2_x.wav")){
 		std::cout << "error" << std::endl;
@@ -14,21 +15,22 @@ int main( int argc, char *argv[] ){
 	sf::Sound sound;
 	sound.setBuffer( buffer );
 	sound.play();
-
-	bool a = true;
-
-	sf::RenderWindow window{ sf::VideoMode{ 640, 480 }, "SFML window" };
+	
+	//declare window and objects
+	sf::RenderWindow window{ sf::VideoMode{ 640, 480 }, "ping pong game" };
 	static ball my_ball(sound);
-	static beam leftbeam(sf::Vector2f{25, 100}, sf::Vector2f{25, 150}, sf::Vector2f{-1, 1});
-	static beam leftbeamV2(sf::Vector2f{25, 100}, sf::Vector2f{25, 150}, sf::Vector2f{1, -1});	
-	static beam rightbeam(sf::Vector2f{590, 100}, sf::Vector2f{25, 150}, sf::Vector2f{-1, 1});
+	static beam leftbeamX(sf::Vector2f{25, 100}, sf::Vector2f{25, 150}, sf::Vector2f{-1, 1});
+	static beam leftbeamY(sf::Vector2f{25, 100}, sf::Vector2f{24, 150}, sf::Vector2f{1, -1});	
+	static beam rightbeamX(sf::Vector2f{590, 100}, sf::Vector2f{25, 150}, sf::Vector2f{-1, 1});
+	static beam rightbeamY(sf::Vector2f{591, 100}, sf::Vector2f{24, 150}, sf::Vector2f{1, -1});
 	static boundary top(sf::Vector2f{0,0}, sf::Vector2f{640, 10}, sf::Vector2f{1, -1});
 	static boundary right(sf::Vector2f{630,0}, sf::Vector2f{640, 480}, sf::Vector2f{-1, 1});
 	static boundary bottom(sf::Vector2f{0,470}, sf::Vector2f{640, 480}, sf::Vector2f{1, -1});
 	static boundary left(sf::Vector2f{0,0}, sf::Vector2f{10, 480}, sf::Vector2f{-1, 1});
 
 
-	drawable *objects[]= {&my_ball, &top, &right, &bottom, &left, &leftbeam, &rightbeam};
+	//put objects in array
+	drawable *objects[]= {&my_ball, &top, &right, &bottom, &left, &leftbeamX, &leftbeamY, &rightbeamX, &rightbeamY};
 
 
 	while (window.isOpen()) {
@@ -39,23 +41,46 @@ int main( int argc, char *argv[] ){
 				window.close();
 			}
 
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+			leftbeamX.move(-40);
+			leftbeamY.move(-40);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+			leftbeamX.move(40);
+			leftbeamY.move(40);
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+			rightbeamX.move(-40);
+			rightbeamY.move(-40);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+			rightbeamX.move(40);
+			rightbeamY.move(40);
+		}
+
 		}
 		for( auto & p : objects ){
          p->draw(window);
-      }
+		
+		}
       	for( auto & p : objects ){
           p->update();
       	}
+
       	for( auto & p : objects ){
          	for( auto & other : objects ){
             	p->interact( *other );
          	} 
       	}
+
 		window.display();
 
 		sf::sleep(sf::milliseconds(1));
 
 	}
+
 	return 0;
 }
 

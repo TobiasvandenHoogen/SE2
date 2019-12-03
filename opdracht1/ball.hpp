@@ -33,6 +33,7 @@ public:
         location.y += speed.y;
     }
 
+    //check if ball overlaps 
     void interact(const drawable & other) override{
         if( this != & other){
         if( overlaps( other )){

@@ -25,25 +25,32 @@ public:
 
     
     bool overlaps( const drawable & other ){
-      bool x_overlap = within( 
-      location.x, 
-      other.location.x, 
-      other.location.x + other.size.x
-   ) || within( 
-      other.location.x, 
-      location.x, 
-      location.x + size.x
-   );
+        bool x_overlap_left = within( 
+        location.x, 
+        other.location.x, 
+        other.location.x + other.size.x
+    ); 
+        bool x_overlap_right = within( 
+        other.location.x, 
+        location.x, 
+        location.x + size.x
+    );
+        
+        bool x_overlap = x_overlap_left || x_overlap_right;
+        
      
-   bool y_overlap = within( 
+   bool y_overlap_top = within( 
       location.y, 
       other.location.y, 
       other.location.y + other.size.y
-   ) || within( 
+   );
+   bool y_overlap_bottom = within( 
       other.location.y, 
       location.y, 
       location.y + size.y
    );
+    bool y_overlap = y_overlap_bottom || y_overlap_top;
+
      return x_overlap && y_overlap;
     }
 };

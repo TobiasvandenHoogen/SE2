@@ -9,7 +9,7 @@
 
 class ball : public drawable{
 private:
-    sf::Vector2f speed = {1, 1};
+    sf::Vector2f speed = {-1, 1};
     sf::Sound & sound;
 
 public:

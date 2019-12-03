@@ -19,17 +19,8 @@ beam(sf::Vector2f location, sf::Vector2f size, sf::Vector2f bounce):
 
     }
 
-    void update 
-
-    void interact(const drawable & other) override{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-            sf::sleep(sf::milliseconds(1000));  
-			location.y -= 1;
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-            sf::sleep(sf::milliseconds(1000));  
-			location.y += 1;
-    }
+    void keyPressed(int y){
+        location.y += y;
     }
 
 

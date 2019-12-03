@@ -20,6 +20,7 @@ int main( int argc, char *argv[] ){
 	sf::RenderWindow window{ sf::VideoMode{ 640, 480 }, "SFML window" };
 	static ball my_ball(sound);
 	static beam leftbeam(sf::Vector2f{25, 100}, sf::Vector2f{25, 150}, sf::Vector2f{-1, 1});
+	static beam leftbeamV2(sf::Vector2f{25, 100}, sf::Vector2f{25, 150}, sf::Vector2f{1, -1});	
 	static beam rightbeam(sf::Vector2f{590, 100}, sf::Vector2f{25, 150}, sf::Vector2f{-1, 1});
 	static boundary top(sf::Vector2f{0,0}, sf::Vector2f{640, 10}, sf::Vector2f{1, -1});
 	static boundary right(sf::Vector2f{630,0}, sf::Vector2f{640, 480}, sf::Vector2f{-1, 1});
@@ -37,6 +38,7 @@ int main( int argc, char *argv[] ){
 			if (event.type == sf::Event::Closed) {
 				window.close();
 			}
+
 		}
 		for( auto & p : objects ){
          p->draw(window);

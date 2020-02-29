@@ -10,7 +10,7 @@
             "args": [],
             "group": "build",
             "options": {
-                "cwd": "${workspaceFolder}\\opdracht1"
+                "cwd": "${workspaceFolder}\\opdracht4"
 			},
 			"presentation": {
 				"echo": true,
@@ -28,7 +28,7 @@
             "args": [],
             "group": "build",
             "options": {
-                "cwd": "${workspaceFolder}\\opdracht1"
+                "cwd": "${workspaceFolder}\\opdracht4"
             },
             "dependsOn": [
                 "make clean"
@@ -49,7 +49,7 @@
             "args": [],
             "group": "build",
             "options": {
-                "cwd": "${workspaceFolder}\\opdracht1"
+                "cwd": "${workspaceFolder}\\opdracht4"
             },
 			"presentation": {
 				"echo": true,
@@ -67,7 +67,7 @@
             "args": [],
             "group": "build",
             "options": {
-                "cwd": "${workspaceFolder}\\opdracht1"
+                "cwd": "${workspaceFolder}\\opdracht4"
             },
 			"presentation": {
 				"echo": true,

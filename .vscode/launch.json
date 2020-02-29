@@ -11,7 +11,7 @@
             "program": "${workspaceFolder}\\2B_TG\\obj\\main.exe",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}\\2B_TG",
+            "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",

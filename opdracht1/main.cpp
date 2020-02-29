@@ -18,14 +18,15 @@ int main( int argc, char *argv[] ){
 	
 	//declare window and objects
 	sf::RenderWindow window{ sf::VideoMode{ 640, 480 }, "ping pong game" };
+	
 	static ball my_ball(sound);
 	static beam leftbeamX(sf::Vector2f{25, 100}, sf::Vector2f{25, 150}, sf::Vector2f{-1, 1});
 	static beam leftbeamY(sf::Vector2f{25, 100}, sf::Vector2f{24, 150}, sf::Vector2f{1, -1});	
 	static beam rightbeamX(sf::Vector2f{590, 100}, sf::Vector2f{25, 150}, sf::Vector2f{-1, 1});
 	static beam rightbeamY(sf::Vector2f{591, 100}, sf::Vector2f{24, 150}, sf::Vector2f{1, -1});
 	static boundary top(sf::Vector2f{0,0}, sf::Vector2f{640, 10}, sf::Vector2f{1, -1});
-	static boundary right(sf::Vector2f{630,0}, sf::Vector2f{640, 480}, sf::Vector2f{-1, 1});
-	static boundary bottom(sf::Vector2f{0,470}, sf::Vector2f{640, 480}, sf::Vector2f{1, -1});
+	static boundary right(sf::Vector2f{630,0}, sf::Vector2f{10, 480}, sf::Vector2f{-1, 1});
+	static boundary bottom(sf::Vector2f{0,470}, sf::Vector2f{640, 10}, sf::Vector2f{1, -1});
 	static boundary left(sf::Vector2f{0,0}, sf::Vector2f{10, 480}, sf::Vector2f{-1, 1});
 
 
@@ -41,23 +42,24 @@ int main( int argc, char *argv[] ){
 				window.close();
 			}
 
+		if(event.type == sf::Event::KeyPressed){
+			if (event.key.code == sf::Keyboard::W) {
+				leftbeamX.move(-10);
+				leftbeamY.move(-10);
+			}
+			if (event.key.code == sf::Keyboard::S) {
+				leftbeamX.move(10);
+				leftbeamY.move(10);
+			}
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-			leftbeamX.move(-40);
-			leftbeamY.move(-40);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-			leftbeamX.move(40);
-			leftbeamY.move(40);
-		}
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-			rightbeamX.move(-40);
-			rightbeamY.move(-40);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-			rightbeamX.move(40);
-			rightbeamY.move(40);
+			if (event.key.code == sf::Keyboard::Up) {
+				rightbeamX.move(-10);
+				rightbeamY.move(-10);
+			}
+			if (event.key.code == sf::Keyboard::Down) {
+				rightbeamX.move(10);
+				rightbeamY.move(10);
+			}
 		}
 
 		}
@@ -76,8 +78,6 @@ int main( int argc, char *argv[] ){
       	}
 
 		window.display();
-
-		sf::sleep(sf::milliseconds(1));
 
 	}
 
